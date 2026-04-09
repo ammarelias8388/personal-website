@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 const [scale, setScale] = useState(1);
-
+const [menuOpen, setMenuOpen] = useState(false);
 const images = [
   "/certifications/c1.png",
   "/certifications/c2.png",
@@ -109,29 +109,67 @@ const handleWheel = (e: React.WheelEvent<HTMLImageElement>) => {
       <Background />
 
       {/* 👇 الحل الصح النهائي */}
-      <div className="relative z-10 pointer-events-none">
+      <div className="relative z-10">
 
         {/* Navbar */}
-        <nav className="pointer-events-auto sticky top-0 z-50 flex justify-between items-center px-8 py-4 border-b border-gray-800 bg-black/70 backdrop--md">
-          <a
-            href="/ammar_elias_cv.pdf"
-            download
-            className="text-sm border border-white-800 px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
-          >
-            Download CV
-          </a>
+        <nav className="pointer-events-auto sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
 
-          <div className="space-x-6 text-gray-300">
-            <a href="#" className={active === "home" ? "text-white border-b border-white pb-1" : "hover:text-white"}>Home</a>
-            <a href="#about" className={active === "about" ? "text-white border-b border-white pb-1" : "hover:text-white"}>About</a>
-            <a href="#skills" className={active === "skills" ? "text-white border-b border-white pb-1" : "hover:text-white"}>Skills</a>
-            <a href="#certificates" className={active === "certificates" ? "text-white border-b border-white pb-1" : "hover:text-white"}>Certificates</a>
-            <a href="#contact" className={active === "contact" ? "text-white border-b border-white pb-1" : "hover:text-white"}>Contact</a>
-          </div>
-        </nav>
+  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        
-     {/* Hero */}
+    {/* LOGO / NAME */}
+    
+
+    {/* Desktop Menu */}
+    <div className="hidden md:flex gap-6 text-gray-300">
+      <a href="#" className="hover:text-white">Home</a>
+      <a href="#about" className="hover:text-white">About</a>
+      <a href="#skills" className="hover:text-white">Skills</a>
+      <a href="#certificates" className="hover:text-white">Certificates</a>
+      <a href="#contact" className="hover:text-white">Contact</a>
+    </div>
+
+    {/* زر CV (Desktop فقط) */}
+    <a
+      href="/ammar_elias_cv.pdf"
+      download
+      className="hidden md:block border px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
+    >
+      CV
+    </a>
+
+    {/* Hamburger Button (Mobile) */}
+    <button
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="md:hidden text-white text-2xl"
+    >
+      ☰
+    </button>
+
+  </div>
+
+  {/* Mobile Menu */}
+  {menuOpen && (
+    <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-black border-t border-gray-800">
+
+      <a href="#" onClick={() => setMenuOpen(false)}>Home</a>
+      <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+      <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
+      <a href="#certificates" onClick={() => setMenuOpen(false)}>Certificates</a>
+      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+
+      <a
+        href="/ammar_elias_cv.pdf"
+        download
+        className="border px-4 py-2 rounded-xl"
+      >
+        Download CV
+      </a>
+
+    </div>
+  )}
+
+</nav>
+
 {/* Hero */}
 <section className="pointer-events-auto py-28 px-6">
 
