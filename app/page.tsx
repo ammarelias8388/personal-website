@@ -134,7 +134,7 @@ const handleWheel = (e: React.WheelEvent<HTMLImageElement>) => {
       download
       className="hidden md:block border px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
     >
-      CV
+     Download CV
     </a>
 
     {/* Hamburger Button (Mobile) */}
